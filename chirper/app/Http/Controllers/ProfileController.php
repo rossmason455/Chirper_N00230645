@@ -57,4 +57,22 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function follow(Request $request, User $user): RedirectResponse
+    {
+        $request->user()->followings()->attach($user);
+        
+        return Redirect::back();
+    }
+
+    public function unfollow(Request $request, User $user): RedirectResponse{
+          $request->user()->followings()->detach($user);
+        
+        return Redirect::back();
+    }
+
+
+
+
+
 }
